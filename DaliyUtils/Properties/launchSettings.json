@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DaliyUtils (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "DaliyUtils (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

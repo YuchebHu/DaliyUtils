@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="DaliyUtils.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DaliyUtils"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:converters="using:DaliyUtils.Common" 
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <converters:MenuItemTemplateSelector x:Key="selector">
+            <DataTemplate x:DataType="converters:Category">
+                <NavigationViewItem 
+                    Content="{x:Bind Name}"
+                    ToolTipService.ToolTip="{x:Bind Tooltip}">
+                    <NavigationViewItem.Icon>
+                        <SymbolIcon Symbol="{x:Bind Glyph}"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+
+            </DataTemplate>
+        </converters:MenuItemTemplateSelector>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <NavigationView x:Name="ToolNavigation" 
+                             Grid.Row="0" 
+                             MenuItemTemplateSelector="{StaticResource selector}"
+                             MenuItemsSource="{x:Bind Categories, Mode=OneWay}"
+                             IsTabStop="False"
+                             SelectionChanged="ToolNavigation_SelectionChanged"
+                             >
+            <StackPanel>
+                <Frame Margin="0, 0, 0, 0" x:Name="NaviFrame"/>
+            </StackPanel>
+
+        </NavigationView>
+    </Grid>
+</Page>
